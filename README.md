@@ -112,6 +112,7 @@ Además, cada imagen de la base de datos MNIST contiene una etiqueta Y respectiv
 En nuestro ejemplo, representamos las etiquetas como vectores posicionales one-hot. En un vector one-hot se almacenan datos en el rango de valores de 0 a 1 y que cada dígito estará representado por "1" en la posición de dicho dígito. Es decir, para representar el dígito "5" tendremos un vector de la forma:
 
 <p align="center"><i>[0, 0, 0, 0, 0, 5, 0, 0, 0, 0]</i></p>
+
 Esto produce un **tensor** de la forma [55.000, 10], podemos entenderlo mejor en la siguiente imagen:
 <br/>
 <br/>
@@ -169,7 +170,7 @@ Las variables definidas se describen de la siguiente forma:
  1. X = No es un valor como tal, es un **placeholder** (referencia) que utilizará TensorFlow en el cálculo del proceso. Necesitamos introducir cualquier número de imágenes de MNIST, por ello necesitaremos un vector de dimensión 784. Como no sabemos el tamaño de imágenes que vamos a utilizar en la entrada lo representamos como "None", o lo que es lo mismo, una dimensión de cualquier longitud.
  2. W = **Variable** utilizada para almacenar la evidencia de que una imagen [784 píxeles] se corresponda a uno de los 10 tipos [10] de dígito, por ello la dimensión de dicha variable es [784, 10].
  3. b = **Variable** utilizada para almacenar los sesgos de los diferentes tipos (dígitos).
- 4. y = Modelo softmax que multiplica los diferentes pesos por los valores de los píxeles de cada imagen y les suma el sesgo de cada tipo(como hemos definido más arriba).
+ 4. y = Modelo softmax que multiplica los diferentes pesos por los valores de los píxeles de cada imagen y les suma el sesgo de cada tipo (como hemos definido más arriba).
 
 Como vemos, la definición del modelo (*y*) únicamente nos lleva una línea pues TensorFlow está diseñado para hacer regresiones de forma muy sencilla.
 
@@ -183,7 +184,7 @@ Una forma de determinar la pérdida del modelo es la entropía cruzada (cross-en
   <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples12.png" alt="Example 12">
 </p>
 
-Donde *y* representa la probabilidad predicha y *y`* representa la probabilidad real obtenida por el modelo (el vector one-hot de probabilidades para cada dígito). La entropía nos permite fijar un valor al nivel de desajuste de la teoría a la realidad en los resultados.
+Donde *y* representa la probabilidad predicha y *y'* representa la probabilidad real obtenida por el modelo (el vector one-hot de probabilidades para cada dígito). La entropía nos permite fijar un valor al nivel de desajuste de la teoría a la realidad en los resultados.
 
 La implementación de la entropía se realiza definiendo primero un placeholder para almacenar los valores correctos:
 ```python
