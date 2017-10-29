@@ -111,7 +111,7 @@ Además, cada imagen de la base de datos MNIST contiene una etiqueta Y respectiv
 
 En nuestro ejemplo, representamos las etiquetas como vectores posicionales one-hot. En un vector one-hot se almacenan datos en el rango de valores de 0 a 1 y que cada dígito estará representado por "1" en la posición de dicho dígito. Es decir, para representar el dígito "5" tendremos un vector de la forma:
 
-<p align="center"><i>[0, 0, 0, 0, 0, 5, 0, 0, 0, 0]</i></p>
+<p align="center"><i>[0, 0, 0, 0, 0, 1, 0, 0, 0, 0]</i></p>
 
 Esto produce un **tensor** de la forma [55.000, 10], podemos entenderlo mejor en la siguiente imagen:
 <br/>
