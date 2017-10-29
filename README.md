@@ -45,3 +45,7 @@ Se representa con 1 único valor posible que almacena la información de intensi
 ## PARTE 1.2 - MNIST
 
 Como podemos ver en la documentación de TensorFlow, cuando alguien aprende un lenguaje de programación nuevo suele aprender a ejecutar un Hello World. En aprendizaje automático el **Hello World** tiene su equivalencia a **MNIST**.
+MNIST es un conjunto de datos para el uso en visión por computador. Se compone de una serie de dígitos manuscritos como los siguientes:
+<p align="center">
+  ![Ejemplo](https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples.png)
+</p>
