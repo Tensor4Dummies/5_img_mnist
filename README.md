@@ -58,6 +58,10 @@ Como ya hemos visto en otras partes de los vídeos, un modelo basado en redes ne
 ## PARTE 1.3 - Tutorial práctico MNIST
 Los datos de la base de datos de MNIST están alojados en un CDN, el código fuente del ejemplo ([src/mnist.py](https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/src/mnist.py) contiene varias líneas para la descarga de los datos:
 
-    from tensorflow.examples.tutorials.mnist import input_data
-    # Import data
-      mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
+
+```python
+from tensorflow.examples.tutorials.mnist import input_data
+
+# Import data
+mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
+```
