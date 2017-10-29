@@ -49,7 +49,7 @@ MNIST es un conjunto de datos para el uso en visión por computador. Se compone 
 La base de datos de MNIST incluye también un conjunto de etiquetas para asociar cada dígito a una etiqueta correspondiente (0, 1, 2 ... 9). El objetivo principal del conjunto de datos es facilitar el reconocimiento de dígitos en imágenes.
 
 ### 1.2.2 - ¿Cuándo y para qué se utiliza?
-Para el reconocimiento de imágenes generalmente se utiliza un modelo basado en Softmax Regression (uno de los más simples de la regresión logística multinomial. El modelo Softmax se basa en la regresión logística multinomial que se utiliza cuando la variable dependiente que queremos etiquetar es nominal.
+Para el reconocimiento de imágenes generalmente se utiliza un modelo basado en Softmax Regression (uno de los más simples de la regresión logística multinomial). El modelo Softmax se basa en la regresión logística multinomial que se utiliza cuando la variable dependiente que queremos etiquetar es nominal.
 
 Es decir, dicha variable puede etiquetarse en un conjunto de categorías que se excluyen entre sí y para los cuales hay más de dos categorías.
 
@@ -135,7 +135,7 @@ En el siguiente diagrama podemos entender mejor cómo son las sumas ponderadas p
 
 A estas sumadas ponderadas añadimos el **sesgo**, dicha cantidad es un peso fijo de la red neuronal para compensar que ciertas entradas puedan ser más propensas a una clasificación que a otra (sirve como discriminante o corrección).
 
-Mediante esta afirmación, se construye la siguiente ecuación para obtener la evidencia de que una imagen se corresponda a un tipo de terminado de dígito:
+Mediante esta afirmación, se construye la siguiente ecuación para obtener la evidencia de que una imagen se corresponda a un tipo determinado de dígito:
 <br/>
 <br/>
 <p align="center">
@@ -149,7 +149,7 @@ Donde:
   -  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples10.png" alt="Example 10"> Índice que corresponde con un dígito
    -  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples11.png" alt="Example 11"> Índice de cada píxel de una imagen
 
-Ahora que tenemos la evidencia, convertimos dicho resultado en una probabilidad *y* de que una imagen se corresponda a un tipo de terminado (dígito) utilizando el modelo softmax de nuevo. Tras obtener las probabilidades, normalizamos el resultado para pasar de las probabilidades de *y* a la etiqueta de tipos, es decir, que una imagen se corresponde a un único tipo.
+Ahora que tenemos la evidencia, convertimos dicho resultado en una probabilidad *y* de que una imagen se corresponda a un tipo de erminado (dígito) utilizando el modelo softmax de nuevo. Tras obtener las probabilidades, normalizamos el resultado para pasar de las probabilidades de *y* a la etiqueta de tipos, es decir, que una imagen se corresponde a un único tipo.
 
 -------------
 ## PARTE 1.5 - Implementación en TensorFlow
