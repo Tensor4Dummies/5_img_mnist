@@ -56,7 +56,15 @@ Como ya hemos visto en otras partes de los vídeos, un modelo basado en redes ne
 
 -------------
 ## PARTE 1.3 - Tutorial práctico MNIST
-Los datos de la base de datos de MNIST están alojados en un CDN, el código fuente del ejemplo ([src/mnist.py](https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/src/mnist.py) contiene varias líneas para la descarga de los datos:
+
+Los datos de la base de datos de MNIST están alojados en un CDN, dichos datos contienen:
+
+ - 55.000 puntos de entrenamiento (*mnist.train*)
+ - 10.000 puntos de test (*mnist.test*)
+ - 5.000 puntos de validación (*mnist.validation*)
+El motivo de tenerlos separados es porque si juntásemos los datos de entrenamiento con los de test o validación provocaría que se generalizase y la máquina no aprendería a etiquetar nuevos elementos ya que contaría con todos de por si.
+
+En este caso práctico de MNIST vamos a emplear el código fuente del ejemplo ([src/mnist.py](https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/src/mnist.py)) contiene varias líneas para la descarga de los datos:
 
 
 ```python
