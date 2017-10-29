@@ -1,8 +1,8 @@
 PARTE 5 - Reconocimiento de imágenes (MNIST)
 ===================
 
-[Parte 1.1 - Introducción](#parte-11---introducción)
-[Parte 1.2 - MNIST](#parte-12---mnist)
+- [Parte 1.1 - Introducción](#parte-11---introducción)
+- [Parte 1.2 - MNIST](#parte-12---mnist)
 
 ## PARTE 1.1 - Introducción
 
