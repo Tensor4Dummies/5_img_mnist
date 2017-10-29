@@ -222,7 +222,7 @@ Lo que hacemos es obtener mediante *tf.argmax(y,1)* el valor más alto de la pre
 
 Tras ello, seleccionamos el valor real para la misma imagen (ya que estamos tratando con conjuntos de test y sabemos a qué dígito corresponde cada imagen.
 
-Teniendo los dos valores, aplicamos una comprobación que nos devuelve si es igual o no y a ello le aplicamos la media para obtener en qué grado se equivoca nuestra red neuronal. Por ejemolo, teniendo [True, False, True, True] la media que obtenemos es 0,75.
+Teniendo los dos valores, aplicamos una comprobación que nos devuelve si es igual o no y a ello le aplicamos la media para obtener en qué grado se equivoca nuestra red neuronal. Por ejemplo, teniendo [True, False, True, True] la media que obtenemos es 0,75.
 
 ```python
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
