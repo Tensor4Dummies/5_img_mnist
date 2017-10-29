@@ -82,7 +82,7 @@ El modelo Softmax trabaja con varias variables determinadas por el tipo de dato 
 
 Ejemplo:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples3.jpg" alt="Example 3">
+  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples3.png" alt="Example 3">
 </p>
 
 En la imagen podemos observar una matriz de tamaño 28 x 28 en la que se almacenan datos respectivos a la intensidad de color de cada píxel como hemos explicado en el apartado 1.1 de introducción. En este caso, la variable X sería la imagen y la variable Y sería "1" al ser la etiqueta respectiva a dicha imagen.
@@ -92,7 +92,7 @@ Tanto el conjunto de entrenamiento como el de testing contienen las dos variable
 
 Es decir, cada elemento de nuestro **tensor** es un valor de intensidad (entre 0 y 1) para cada píxel de cada imagen particular, se puede entender mejor en la siguiente imagen:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples4.jpg" alt="Example 4">
+  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples4.png" alt="Example 4">
 </p>
 
 #### Tensor que almacena los datos de las etiquetas de cada imagen
@@ -104,5 +104,5 @@ En nuestro ejemplo, representamos las etiquetas como vectores posicionales one-h
 Esto produce un **tensor** de la forma [55.000, 10], podemos entenderlo mejor en la siguiente imagen:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples5.jpg" alt="Example 5">
+  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples5.png" alt="Example 5">
 </p>
