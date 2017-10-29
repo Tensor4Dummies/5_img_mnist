@@ -135,6 +135,52 @@ Mediante esta afirmación, se construye la siguiente ecuación para obtener la e
 Donde:
 
  - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples8.png" alt="Example 8"> Es el peso de un determinado dígito
- - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples9.png" alt="Example 9"> Sesgo de un determinado dígito
- - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples10.png" alt="Example 10"> Índice que corresponde con un dígito
- - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples11.png" alt="Example 11"> Índice de cada píxel de una imagen
+ -  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples9.png" alt="Example 9"> Sesgo de un determinado dígito
+  -  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples10.png" alt="Example 10"> Índice que corresponde con un dígito
+   -  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples11.png" alt="Example 11"> Índice de cada píxel de una imagen
+
+Ahora que tenemos la evidencia, convertimos dicho resultado en una probabilidad *y* de que una imagen se corresponda a un tipo de terminado (dígito) utilizando el modelo softmax de nuevo. Tras obtener las probabilidades, normalizamos el resultado para pasar de las probabilidades de *y* a la etiqueta de tipos, es decir, que una imagen se corresponde a un único tipo.
+
+-------------
+## PARTE 1.5 - Implementación en TensorFlow
+Ahora que tenemos la librería MNIST definida y el modelo Softmax formalizado podemos proceder a la realización del ejemplo de forma real. Para ello utilizaremos Python y librerías avanzadas de cálculo como NumPy que nos ofrecerá la potencia de cálculo necesaria para la multiplicación de las matrices del modelo.
+
+### 1.5.1 - Variables e implementación
+Empezando por lo básico, necesitamos definir varias variables que utilizaremos en el cálculo:
+
+```python
+x = tf.placeholder(tf.float32, [None, 784])
+W = tf.Variable(tf.zeros([784, 10]))
+b = tf.Variable(tf.zeros([10]))
+y = tf.matmul(x, W) + b
+```
+
+Las variables definidas se describen de la siguiente forma:
+
+ 1. X = No es un valor como tal, es un **placeholder** (referencia) que utilizará TensorFlow en el cálculo del proceso. Necesitamos introducir cualquier número de imágenes de MNIST, por ello necesitaremos un vector de dimensión 784. Como no sabemos el tamaño de imágenes que vamos a utilizar en la entrada lo representamos como "None", o lo que es lo mismo, una dimensión de cualquier longitud.
+ 2. W = **Variable** utilizada para almacenar la evidencia de que una imagen [784 píxeles] se corresponda a uno de los 10 tipos [10] de dígito, por ello la dimensión de dicha variable es [784, 10].
+ 3. b = **Variable** utilizada para almacenar los sesgos de los diferentes tipos (dígitos).
+ 4. y = Modelo softmax que multiplica los diferentes pesos por los valores de los píxeles de cada imagen y les suma el sesgo de cada tipo(como hemos definido más arriba).
+
+Como vemos, la definición del modelo (*y*) únicamente nos lleva una línea pues TensorFlow está diseñado para hacer regresiones de forma muy sencilla.
+
+### 1.5.2 - Entrenamiento de la regresión
+Definimos dentro de la fase de entrenamiento un concepto básico que es el coste o pérdida para conseguir categorizar una red neuronal como buena o mala. Se denomina coste o pérdida pues representa lo lejos que está nuestro modelo de la red neuronal del resultado esperado. Por ello, tratamos de minimizar el error lo máximo posible.
+
+Una forma de determinar la pérdida del modelo es la entropía cruzada (cross-entropy) que nos permite saber en qué grado se está cometiendo el error. Se define con la siguiente fórmula:
+<br/>
+<br/>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples12.png" alt="Example 12">
+</p>
+
+Donde *y* representa la probabilidad predicha y *y`* representa la probabilidad real obtenida por el modelo (el vector one-hot de probabilidades para cada dígito). La entropía nos permite fijar un valor al nivel de desajuste de la teoría a la realidad en los resultados.
+
+La implementación de la entropía se realiza definiendo primero un placeholder para almacenar los valores correctos:
+```python
+y_ = tf.placeholder(tf.float32, [None, 10])
+```
+Tras dicha definición se implementa la entropía cruzada como:
+```python
+cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
+```
