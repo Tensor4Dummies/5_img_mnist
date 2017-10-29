@@ -54,7 +54,7 @@ Como ya hemos visto en otras partes de los vídeos, un modelo basado en redes ne
 </p>
 
 -------------
-## PARTE 1.3 - Tutorial práctico MNIST
+## PARTE 1.3 - Tensores de MNIST
 
 Los datos de la base de datos de MNIST están alojados en un CDN, dichos datos contienen:
 
@@ -74,7 +74,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
 ```
 
-### 1.3.1 - Funcionamiento del modelo Softmax
+### 1.3.1 - Variables del modelo Softmax
 El modelo Softmax trabaja con varias variables determinadas por el tipo de dato contenido en ellas por ello podemos definir varias:
 
  - X = Imagen
@@ -91,6 +91,8 @@ En la imagen podemos observar una matriz de tamaño 28 x 28 en la que se almacen
 Tanto el conjunto de entrenamiento como el de testing contienen las dos variables. El resultado de estos datos se compone de un **tensor** de la forma [55.000, 784], la primera dimensión será un índice de imágenes (la 55.000) y la segunda dimensión será un índice de cada píxel de cada imagen.
 
 Es decir, cada elemento de nuestro **tensor** es un valor de intensidad (entre 0 y 1) para cada píxel de cada imagen particular, se puede entender mejor en la siguiente imagen:
+<br/>
+<br/>
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples4.png" alt="Example 4">
 </p>
@@ -100,9 +102,39 @@ Además, cada imagen de la base de datos MNIST contiene una etiqueta Y respectiv
 
 En nuestro ejemplo, representamos las etiquetas como vectores posicionales one-hot. En un vector one-hot se almacenan datos en el rango de valores de 0 a 1 y que cada dígito estará representado por "1" en la posición de dicho dígito. Es decir, para representar el dígito "5" tendremos un vector de la forma:
 
-<p align="center">***[0, 0, 0, 0, 0, 5, 0, 0, 0, 0]***</p>
+<p align="center"><i>[0, 0, 0, 0, 0, 5, 0, 0, 0, 0]</i></p>
 Esto produce un **tensor** de la forma [55.000, 10], podemos entenderlo mejor en la siguiente imagen:
-
+<br/>
+<br/>
 <p align="center">
   <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples5.png" alt="Example 5">
 </p>
+
+-------------
+## PARTE 1.4 - Funcionamiento del modelo Softmax
+El modelo asigna probabilidades estadísticas de que una imagen pertenezca a un dígito, por lo que podemos encontrarnos ante la posibilidad de que el modelo asigne a una misma imagen varias probabilidades de pertenecer a cierto número. Para este problema es útil la regresión de softmax pues nos devuelve una lista de valores entre 0 y 1.
+
+El modelo asigna primero evidencias a una imagen relativas a qué dígito corresponde, para ello realiza una **suma ponderada de las intensidades de los píxeles**. Dicha suma provoca que se denigren los valores que no coincidan entre la imagen y la etiqueta, es decir, **el peso de la suma ponderada será negativa si un pixel no se corresponde con la etiqueta y positiva en caso de que si lo sea.**
+
+En el siguiente diagrama podemos entender mejor cómo son las sumas ponderadas para cada dígito. En azul se representa el peso positivo (se corresponde) y en rojo el peso negativo (no se corresponde).
+<br/>
+<br/>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples6.png" alt="Example 6">
+</p>
+
+A estas sumadas ponderadas añadimos el **sesgo**, dicha cantidad es un peso fijo de la red neuronal para compensar que ciertas entradas puedan ser más propensas a una clasificación que a otra (sirve como discriminante o corrección).
+
+Mediante esta afirmación, se construye la siguiente ecuación para obtener la evidencia de que una imagen se corresponda a un tipo de terminado de dígito:
+<br/>
+<br/>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples7.png" alt="Example 7">
+</p>
+
+Donde:
+
+ - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples8.png" alt="Example 8"> Es el peso de un determinado dígito
+ - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples9.png" alt="Example 9"> Sesgo de un determinado dígito
+ - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples10.png" alt="Example 10"> Índice que corresponde con un dígito
+ - <img src="https://raw.githubusercontent.com/Tensor4Dummies/5_img_mnist/master/doc/mnistExamples11.png" alt="Example 11"> Índice de cada píxel de una imagen
