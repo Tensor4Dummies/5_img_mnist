@@ -3,6 +3,9 @@ PARTE 5 - Reconocimiento de imágenes (MNIST)
 
  - [Parte 1.1 - Introducción](#parte-11---introducción)
  - [Parte 1.2 - MNIST](#parte-12---mnist)
+ - [Parte 1.3 - Tensores de MNIST](#parte-13---tensores-de-mnist)
+ - [Parte 1.4 - Funcionamiento del modelo Softmax](#parte-14---funcionamiento-del-modelo-softmax)
+ - [Parte 1.5 - Implementación en TensorFlow](#parte-15---implementación-en-tensorflow)
 
 ## PARTE 1.1 - Introducción
 
