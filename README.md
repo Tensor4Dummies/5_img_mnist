@@ -192,3 +192,43 @@ Tras dicha definición se implementa la entropía cruzada como:
 ```python
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
 ```
+En la implementación *tf.log* calcula el logaritmo de cada elemento de *y*, después multiplica cada elemento de *y_* con el elemento correspondiente de *tf.log(y)*. *tf.reduce_sum* suma los elementos de la segunda dimensión de *y* y  *tf.reduce_mean* realiza la media de cada uno de los elementos de dicha suma.
+
+Ahora que tenemos el modelo definido junto a la implementación de la entropía podemos ejecutarlo mediante TensorFlow de forma que se minimice la entropía utilizando el algoritmo del descenso de gradiente con una tasa de aprendizaje de 0.5.
+
+El **descenso de gradiente** es un algoritmo utilizado de forma que TensorFlow desplaza con pequeñas modificaciones cada variable en la dirección correcta para reducir su pérdida o coste. Se implementa de la siguiente forma:
+```python
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+```
+
+Tras definir todos las variables implicadas en el proceso de entrenamiento de la red neuronal, procedemos a ejecutar dicho entrenamiento con un bucle de 1000 repeticiones:
+```python
+sess = tf.InteractiveSession()
+tf.global_variables_initializer().run()
+for _ in range(1000):
+  batch_xs, batch_ys = mnist.train.next_batch(100)
+  sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+```
+En cada pasada del bucle obtenemos un conjunto de puntos al azar de nuestro conjunto de test. Realizamos el entrenamiento de dichos datos y reemplazamos los **placeholders**.
+
+El hecho de usar conjuntos pequeños de datos se llama entrenamiento estocástico, es decir, un descenso de gradiente estocástico. Realmente, lo ideal sería utilizar el conjunto completo de los datos pero no sería eficiente desde el punto de vista computacional, así que lo que hacemos es usar un subconjunto diferente en cada pasada del bucle para ir entrenando la red neuronal por partes.
+
+### 1.5.3 - Evaluación de la red neuronal
+Este es uno de los pasos más importantes pues realmente es donde evaluamos el nivel de "bien" o "mal" que funciona nuestra red neuronal. Es decir, si clasifica bien o no.
+
+Lo que hacemos es obtener mediante *tf.argmax(y,1)* el valor más alto de la predicción de probabilidades de cada imagen respectivo a cada tipo (dígito). Es decir, obtenemos el valor más alto que nuestra red neuronal le ha dado a una imagen relativo a cada dígito (seleccionar la probabilidad más alta = qué dígito se ha asignado a la imagen).
+
+Tras ello, seleccionamos el valor real para la misma imagen (ya que estamos tratando con conjuntos de test y sabemos a qué dígito corresponde cada imagen.
+
+Teniendo los dos valores, aplicamos una comprobación que nos devuelve si es igual o no y a ello le aplicamos la media para obtener en qué grado se equivoca nuestra red neuronal. Por ejemolo, teniendo [True, False, True, True] la media que obtenemos es 0,75.
+
+```python
+correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+```
+Para finalizar con la evaluación, imprimimos por pantalla el porcentaje de precisión obtenida por nuestra red neuronal.
+```python
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+```
+
+El valor obtenido debería ser en torno al 92%, un valor alto pero no bueno precisamente. Como mencionamos al principio de este tutorial, softmax es un modelo de análisis estadístico de redes neuronales pero realmente con demasiada simpleza. Existen otros modelos más avanzados que nos aumentan la precisión a un 99,7% pero que a su vez aumentan la complejidad de implementación y el grado de coste computacional se eleva.
