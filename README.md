@@ -11,6 +11,7 @@ PARTE 5 - Reconocimiento de imágenes (MNIST)
  - [Parte 1.5 - Implementación en TensorFlow](#parte-15---implementación-en-tensorflow)
    - [Parte 1.5.1 - Variables e implementación](#151---variables-e-implementación)
    - [Parte 1.5.2 - Entrenamiento de la regresión](#152---entrenamiento-de-la-regresión)
+   - [Parte 1.5.3 - Evaluación de la red neuronal](#153---evaluación-de-la-red-neuronal)
 
 ## PARTE 1.1 - Introducción
 
