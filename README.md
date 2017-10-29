@@ -1,9 +1,8 @@
-Parte 5: Reconocimiento de imágenes
+PARTE 5 - Reconocimiento de imágenes (MNIST)
 ===================
-
-
-
-## Introducción
+-------------
+## PARTE 1.2 - Introducción
+-------------
 Cada imagen está compuesta de millones de puntos (píxeles). Cada píxel acumula información acerca del color, saturación y otros datos para formar la imagen visible.
 
 Representación de un píxel:
@@ -38,3 +37,9 @@ Se representa con 1 único valor posible que almacena la información de intensi
 *RGB: (6, 6, 3)*
 - Tamaño de la matriz: 6x6
 - Número de elementos: 3 (rojo, verde, azul)
+
+-------------
+## PARTE 1.2 - MNIST
+-------------
+
+Como podemos ver en la documentación de TensorFlow, cuando alguien aprende un lenguaje de programación nuevo suele aprender a ejecutar un Hello World. En aprendizaje automático el **Hello World** tiene su equivalencia a **MNIST**.
