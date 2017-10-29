@@ -1,6 +1,10 @@
 PARTE 5 - Reconocimiento de imágenes (MNIST)
 ===================
-## PARTE 1.2 - Introducción
+
+[Parte 1.1 - Introducción](#parte-11---introducción)
+[Parte 1.2 - MNIST](#parte-12---mnist)
+
+## PARTE 1.1 - Introducción
 
 Cada imagen está compuesta de millones de puntos (píxeles). Cada píxel acumula información acerca del color, saturación y otros datos para formar la imagen visible.
 
